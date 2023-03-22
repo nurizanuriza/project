@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-f
+  labels:
+    app: project-f
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: project-f
+  template:
+    metadata:
+      labels:
+        app: project-f
+    spec:
+      containers:
+      - name: frontend
+        image: gcr.io/eternal-bongo-379210/nuriz1:1.0
+        ports:
+        - containerPort: 80

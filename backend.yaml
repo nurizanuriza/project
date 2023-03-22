@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-backend
+  labels:
+    app: project
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: project
+  template:
+    metadata:
+      labels:
+        app: project
+    spec:
+      containers:
+      - name: backend
+        image: gcr.io/eternal-bongo-379210/nuriz2:1.0                     
+        ports:
+        - containerPort: 3040
+        env:
+          - name: PGHOST
+            valueFrom:
+              secretKeyRef:
+                name: secret-awesome
+                key: PGHOST
+          - name: PGUSER
+            valueFrom:
+              secretKeyRef:
+                name: secret-awesome
+                key: PGUSER
+          - name: PGDATABASE
+            valueFrom:
+              secretKeyRef:
+                name: secret-awesome
+                key: PGDATABASE
+          - name: PGPASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: secret-awesome
+                key: PGPASSWORD
+          

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service-f
+spec:
+  type: ClusterIP
+  selector:
+    app: project-f
+  ports:
+    - port: 8080
+      targetPort: 80
